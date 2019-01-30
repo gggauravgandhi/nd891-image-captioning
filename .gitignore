@@ -1,5 +1,5 @@
-data/
-logs/
-cocoapi-master/
-.ipynb_checkpoints/
-__pycache__/
+data/*
+logs/*
+cocoapi-master/*
+.ipynb_checkpoints/*
+__pycache__/*
