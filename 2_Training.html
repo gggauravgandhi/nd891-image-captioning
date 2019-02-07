@@ -11828,22 +11828,22 @@ div#notebook {
 </ul>
 <p>If you're not sure where to begin to set some of the values above, you can peruse <a href="https://arxiv.org/pdf/1502.03044.pdf">this paper</a> and <a href="https://arxiv.org/pdf/1411.4555.pdf">this paper</a> for useful guidance!  <strong>To avoid spending too long on this notebook</strong>, you are encouraged to consult these suggested research papers to obtain a strong initial guess for which hyperparameters are likely to work best.  Then, train a single model, and proceed to the next notebook (<strong>3_Inference.ipynb</strong>).  If you are unhappy with your performance, you can return to this notebook to tweak the hyperparameters (and/or the architecture in <strong>model.py</strong>) and re-train your model.</p>
 <h3 id="Question-1">Question 1<a class="anchor-link" href="#Question-1">&#182;</a></h3><p><strong>Question:</strong> Describe your CNN-RNN architecture in detail.  With this architecture in mind, how did you select the values of the variables in Task 1?  If you consulted a research paper detailing a successful implementation of an image captioning model, please provide the reference.</p>
-<p><strong>Answer:</strong></p>
+<p><strong>Answer:</strong> CNN is the pre-trained model ResNet-50 which is used as Encoder. We are using two layer LSTML network for decoder. I tried different values for variables till i was getting better resutls, brute-force methods along with some help form internet mostly for embed size.</p>
 <h3 id="(Optional)-Task-#2">(Optional) Task #2<a class="anchor-link" href="#(Optional)-Task-#2">&#182;</a></h3><p>Note that we have provided a recommended image transform <code>transform_train</code> for pre-processing the training images, but you are welcome (and encouraged!) to modify it as you wish.  When modifying this transform, keep in mind that:</p>
 <ul>
 <li>the images in the dataset have varying heights and widths, and </li>
 <li>if using a pre-trained model, you must perform the corresponding appropriate normalization.</li>
 </ul>
 <h3 id="Question-2">Question 2<a class="anchor-link" href="#Question-2">&#182;</a></h3><p><strong>Question:</strong> How did you select the transform in <code>transform_train</code>?  If you left the transform at its provided value, why do you think that it is a good choice for your CNN architecture?</p>
-<p><strong>Answer:</strong></p>
+<p><strong>Answer:</strong> I kept the transform at it's default as model will be more powerful and adaptive.</p>
 <h3 id="Task-#3">Task #3<a class="anchor-link" href="#Task-#3">&#182;</a></h3><p>Next, you will specify a Python list containing the learnable parameters of the model.  For instance, if you decide to make all weights in the decoder trainable, but only want to train the weights in the embedding layer of the encoder, then you should set <code>params</code> to something like:</p>
 
 <pre><code>params = list(decoder.parameters()) + list(encoder.embed.parameters())</code></pre>
 <h3 id="Question-3">Question 3<a class="anchor-link" href="#Question-3">&#182;</a></h3><p><strong>Question:</strong> How did you select the trainable parameters of your architecture?  Why do you think this is a good choice?</p>
-<p><strong>Answer:</strong></p>
+<p><strong>Answer:</strong> The CNN mode is a pre-trained model so  we do not need to retrain the model, just we repalced last fully connected layer so it adapts to our architecture. I used all suggested valued and it looks like worked out well.</p>
 <h3 id="Task-#4">Task #4<a class="anchor-link" href="#Task-#4">&#182;</a></h3><p>Finally, you will select an <a href="http://pytorch.org/docs/master/optim.html#torch.optim.Optimizer">optimizer</a>.</p>
 <h3 id="Question-4">Question 4<a class="anchor-link" href="#Question-4">&#182;</a></h3><p><strong>Question:</strong> How did you select the optimizer used to train your model?</p>
-<p><strong>Answer:</strong></p>
+<p><strong>Answer:</strong> I choose Adam. because it worked best with my previous models. Adam is based on stochastic gradient descent algoritham.</p>
 
 </div>
 </div>
@@ -11931,7 +11931,7 @@ div#notebook {
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading annotations into memory...
-Done (t=0.52s)
+Done (t=0.61s)
 creating index...
 index created!
 [0/414113] Tokenizing captions...
@@ -11960,7 +11960,7 @@ loading annotations into memory...
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Done (t=0.46s)
+<pre>Done (t=0.45s)
 creating index...
 index created!
 Obtaining caption lengths...
@@ -11974,7 +11974,7 @@ Obtaining caption lengths...
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 414113/414113 [00:38&lt;00:00, 10806.65it/s]
+<pre>100%|██████████| 414113/414113 [00:38&lt;00:00, 10858.29it/s]
 </pre>
 </div>
 </div>
@@ -12175,7 +12175,7 @@ Epoch [3/3], Step [1618/1618], Loss: 2.5733, Perplexity: 13.1097</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># (Optional) TODO: Validate your model.</span>
